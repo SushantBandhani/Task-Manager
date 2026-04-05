@@ -32,10 +32,10 @@ export default function RegisterPage() {
     try {
       await register({ firstName: form.firstName, lastName: form.lastName, email: form.email, password: form.password });
       toast.success("Account created! Welcome 🎉");
-      router.push("/dashboard");
+      toast.success("Account created!");
+      router.push("/login");
     } catch (err) {
-      const msg = (err as AxiosError<{ message: string }>)?.response?.data?.message || "Registration failed";
-      toast.error(msg);
+    const msg = (err as AxiosError<{ errorMessage: string }>)?.response?.data?.errorMessage || "Registration failed";      toast.error(msg);
     } finally {
       setLoading(false);
     }

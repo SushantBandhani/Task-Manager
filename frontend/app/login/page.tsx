@@ -32,9 +32,8 @@ export default function LoginPage() {
       toast.success("Welcome back!");
       router.push("/dashboard");
     } catch (err) {
-      const msg =
-        (err as AxiosError<{ message: string }>)?.response?.data?.message ||
-        "Invalid credentials";
+         const msg = (err as AxiosError<{ errorMessage: string }>)?.response?.data?.errorMessage || "Login failed"; 
+         toast.error(msg);
       toast.error(msg);
     } finally {
       setLoading(false);

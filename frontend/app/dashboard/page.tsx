@@ -53,7 +53,7 @@ export default function DashboardPage() {
     setTotalPages(data.pagination.totalPages);
     setTotalTasks(data.pagination.total);
   } catch (err) {
-    const msg = (err as AxiosError<{ message: string }>)?.response?.data?.message;
+    const msg = (err as AxiosError<{ errorMessage: string }>)?.response?.data?.errorMessage;
     toast.error(msg || "Failed to load tasks");
   } finally {
     setLoading(false);
@@ -94,7 +94,7 @@ export default function DashboardPage() {
     setModalOpen(false);
     toast.success("Task created!");
   } catch (err) {
-    const msg = (err as AxiosError<{ message: string }>)?.response?.data?.message;
+    const msg = (err as AxiosError<{ errorMessage: string }>)?.response?.data?.errorMessage;
     toast.error(msg || "Failed to create task");
     throw err; 
   }
@@ -112,7 +112,7 @@ export default function DashboardPage() {
       setModalOpen(false);
       toast.success("Task updated!");
     } catch (err) {
-      const msg = (err as AxiosError<{ message: string }>)?.response?.data?.message;
+      const msg = (err as AxiosError<{ errorMessage: string }>)?.response?.data?.errorMessage;
       toast.error(msg || "Failed to update task");
       throw err;
     }
@@ -135,7 +135,7 @@ export default function DashboardPage() {
       setDeleteTask(null);
       toast.success("Task deleted");
     } catch (err) {
-      const msg = (err as AxiosError<{ message: string }>)?.response?.data?.message;
+      const msg = (err as AxiosError<{ errorMessage: string }>)?.response?.data?.errorMessage;
       toast.error(msg || "Failed to delete task");
     } finally {
       setDeleteLoading(false);

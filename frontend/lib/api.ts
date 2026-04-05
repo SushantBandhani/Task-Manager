@@ -13,9 +13,7 @@ const api = axios.create({
 const refreshApi = axios.create({
   baseURL: BASE_URL,
   withCredentials: true,
-  headers: {
-    "Content-Type": "application/json",
-  },
+  headers: { "Content-Type": "application/json" },
 });
 
 let isRefreshing = false;
@@ -24,10 +22,10 @@ let failedQueue: Array<{
   reject: (reason?: unknown) => void;
 }> = [];
 
-const processQueue = (error: AxiosError | null) => {
+const processQueue = (error: AxiosError | null, token?: unknown) => {
   failedQueue.forEach((prom) => {
     if (error) prom.reject(error);
-    else prom.resolve(undefined);
+    else prom.resolve(token);
   });
   failedQueue = [];
 };
@@ -71,19 +69,23 @@ api.interceptors.response.use(
     isRefreshing = true;
 
     try {
-      await refreshApi.post("/auth/refresh");
+      await refreshApi.post("/auth/refreshToken");
+
       processQueue(null);
+
+      isRefreshing = false;
+
       return api(originalRequest);
     } catch (refreshError) {
       processQueue(refreshError as AxiosError);
+
+      isRefreshing = false;
 
       if (typeof window !== "undefined") {
         window.location.href = "/login";
       }
 
       return Promise.reject(refreshError);
-    } finally {
-      isRefreshing = false;
     }
   }
 );
