@@ -284,6 +284,7 @@ Both tokens are stored in `HttpOnly` cookies — they are never accessible via J
 ```env
 # Database
 DATABASE_URL="postgresql://postgres:password@db:5432/taskr"
+ALLOWED_ORIGINS='http://localhost:3000'
 
 # Server
 PORT=8000
