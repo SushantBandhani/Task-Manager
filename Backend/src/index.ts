@@ -19,7 +19,7 @@ const startServer = async (): Promise<void> => {
   }
 };
 
-startServer();
+await startServer();
 process.on("SIGINT", async () => {
   await prisma.$disconnect();
   console.log("Database disconnected");
