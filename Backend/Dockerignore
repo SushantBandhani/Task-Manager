@@ -1,0 +1,27 @@
+# Node dependencies
+node_modules
+npm-debug.log
+yarn-error.log
+
+# TypeScript build output
+dist
+
+# Prisma generated client (we will generate it in container)
+src/generated/prisma
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Git files
+.git
+.gitignore
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode
+.idea
