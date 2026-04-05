@@ -9,6 +9,7 @@ import React, {
 } from "react";
 import { User, LoginPayload, RegisterPayload } from "@/types";
 import { authApi } from "@/lib/authApi";
+import { usePathname } from "next/navigation";
 
 interface AuthContextValue {
   user: User | null;
@@ -21,7 +22,10 @@ interface AuthContextValue {
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
+const PUBLIC_ROUTES = ["/login", "/register"];
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -37,8 +41,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
+    if (PUBLIC_ROUTES.includes(pathname)) {
+      setIsLoading(false);
+      setUser(null);
+      return;
+    }
+
     getUserData();
-  }, [getUserData]);
+  }, [pathname, getUserData]);
 
   const login = async (payload: LoginPayload) => {
     await authApi.login(payload);
