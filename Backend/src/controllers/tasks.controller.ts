@@ -3,9 +3,9 @@ import ApiError from "../utils/ApiError.ts";
 import asyncHandler from "../utils/AsyncHandler.ts";
 import ApiResponse from "../utils/ApiResponse.ts";
 import prisma from "../lib/prisma.ts";
-import type { User, Task } from "../generated/prisma/client";
+import type { User, Task } from "../generated/prisma/client.ts";
 import { TaskStatus as TaskStatusEnum } from "../generated/prisma/enums.ts";
-import type { TaskStatus } from "../generated/prisma/enums";
+import type { TaskStatus } from "../generated/prisma/enums.ts";
 
 
 const VALID_STATUSES = Object.values(TaskStatusEnum);
