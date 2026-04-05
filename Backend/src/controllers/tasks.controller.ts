@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import ApiError from "../utils/ApiError";
+import ApiError from "../utils/ApiError.ts";
 import asyncHandler from "../utils/AsyncHandler.ts";
 import ApiResponse from "../utils/ApiResponse.ts";
 import prisma from "../lib/prisma.ts";

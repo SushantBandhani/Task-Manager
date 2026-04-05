@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import type { User } from "../generated/prisma/client";
+import type { User } from "../generated/prisma/client.ts";
 
 type TokenUser = Pick<User, "id" | "firstName" | "lastName" | "email">;
 
