@@ -284,6 +284,7 @@ Both tokens are stored in `HttpOnly` cookies — they are never accessible via J
 ```env
 # Database
 DATABASE_URL="postgresql://postgres:password@db:5432/taskr"
+ALLOWED_ORIGINS='http://localhost:3000'
 
 # Server
 PORT=8000
@@ -292,8 +293,8 @@ ENVIRONMENT=development        # or production
 # JWT
 ACCESS_TOKEN_SECRET=your_access_token_secret_here
 REFRESH_TOKEN_SECRET=your_refresh_token_secret_here
-ACCESS_TOKEN_EXPIRY=1d
-REFRESH_TOKEN_EXPIRY=2d
+ACCESS_TOKEN_EXPIRY=15m
+REFRESH_TOKEN_EXPIRY=1d
 ```
 
 ### Frontend — `frontend/.env.local`
