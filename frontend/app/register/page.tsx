@@ -31,7 +31,6 @@ export default function RegisterPage() {
     setLoading(true);
     try {
       await register({ firstName: form.firstName, lastName: form.lastName, email: form.email, password: form.password });
-      toast.success("Account created! Welcome 🎉");
       toast.success("Account created!");
       router.push("/login");
     } catch (err) {
