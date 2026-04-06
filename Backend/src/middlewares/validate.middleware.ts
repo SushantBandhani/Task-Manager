@@ -14,7 +14,12 @@ const validate =
       return next(new ApiError(400, errorMessage));
     }
 
-    req[property] = result.data;
+    Object.defineProperty(req, property, {
+      value: result.data,
+      writable: true,
+      configurable: true,
+      enumerable: true,
+    });
     next();
   };
 

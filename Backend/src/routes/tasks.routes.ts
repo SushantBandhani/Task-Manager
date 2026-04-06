@@ -16,11 +16,11 @@ const tasksRouter = Router();
 tasksRouter.use(verifyToken);
 
 tasksRouter.route("/")
-  .get(validate(getTasksQuerySchema), getTasks)   
+  .get(validate(getTasksQuerySchema, "query"), getTasks)   
   .post(validate(createTaskSchema), createTask); 
 
 tasksRouter.route("/:id")
-  .get(validate(taskIdParamSchema), getTaskById)   
+  .get(validate(taskIdParamSchema, "params"), getTaskById)   
   .put(validate(updateTaskSchema), updateTask) 
   .delete(deleteTask); 
 
